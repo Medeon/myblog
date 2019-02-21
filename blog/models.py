@@ -17,4 +17,4 @@ class Post(models.Model):
         # create a string representation
     def __str__(self):
         return self.title
-
+      # return str(self.title) + ' by ' + str(self.author)
