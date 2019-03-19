@@ -14,7 +14,11 @@
 </head>
 <body>
 <div class="page-header">
+    {% if user.is_authenticated %}
+        <a href="{% url 'post_new' %}" class="top-menu"><i class="far fa-plus-square fa-2x"></i></a>
+    {% endif %}
     <h1><a href="{% url "post_list" %}">MEDEON BLOG</a></h1>
+
 </div>
 
 <div class="content container">

@@ -53,4 +53,4 @@ def post_edit(request, pk):
         context_dictionary = {'form': form}
     return render(request, 'blog/post_edit.html', context_dictionary)
 
-#TIMESTAMP 9:10
+# TIMESTAMP: 8:00
