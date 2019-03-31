@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -17,6 +18,7 @@ def post_detail(request, pk):
     context_dictionary = {'post': post}
     return render(request, 'blog/post_detail.html', context_dictionary)
 
+@login_required(login_url='/accounts/login')
 def post_new(request):
     # By submitting the form (equal to Post request) run:
     if request.method == 'POST':
@@ -35,6 +37,7 @@ def post_new(request):
         context_dictionary = {'form': form}
     return render(request, 'blog/post_edit.html', context_dictionary)
 
+@login_required(login_url='/accounts/login')
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
@@ -48,16 +51,19 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-        context_dictionary = {'form': form}
+        context_dictionary = {'form': form, 'post': post}
     return render(request, 'blog/post_edit.html', context_dictionary)
 
+@login_required(login_url='/accounts/login')
 def post_draft_list(request):
     # show all of the drafts in decending order:
     posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
     context_dictionary = {'posts': posts}
     return render(request, 'blog/post_draft_list.html', context_dictionary)
 
+@login_required(login_url='/accounts/login')
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('post_detail', pk=pk)
+# TIMESTAMP: 15:00
