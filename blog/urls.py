@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Homepage: 127.0.0.1:8000 --> local
@@ -26,8 +25,4 @@ urlpatterns = [
     # 127.0.0.1:8000/post/4/publish --> local
     # mydjangosite.com/post/4/publish --> online
     path('post/<int:pk>/publish', views.post_publish, name='post_publish'),
-
-    # 127.0.0.1:8000/accounts/login --> local
-    # mydjangosite.com/accounts/login --> online
-    path('accounts/login', auth_views.LoginView.as_view(), name='login'),
 ]

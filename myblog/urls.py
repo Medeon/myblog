@@ -14,10 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # 127.0.0.1:8000/accounts/login --> local
+    # mydjangosite.com/accounts/login --> online
+    path('accounts/login', auth_views.LoginView.as_view(), name='login'),
+
+    # 127.0.0.1:8000/accounts/logout --> local
+    # mydjangosite.com/accounts/logout --> online
+    path('accounts/logout', view=auth_views.LogoutView.as_view(), name='logout', kwargs={'next_page': 'post_list'}),
+
     # if 127.0.0.1:8000 (homepage) is empty, show this link:
-    path('', include('blog.urls'))
+    path('', include('blog.urls')),
 ]
