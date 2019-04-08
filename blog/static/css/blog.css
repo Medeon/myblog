@@ -4,10 +4,8 @@
     padding: 20px 20px 20px 40px;
 }
 
-.page-header h1, .page-header h1 a{
-    color: #ffffff;
-    font-size: 36pt;
-    text-decoration: none;
+.edit-header {
+    margin-top: 20px;
 }
 
 .content {
@@ -22,14 +20,6 @@
     margin-bottom: 70px;
 }
 
-.post h1 a {
-    color: #000000;
-}
-
-.post h1 a:visited {
-    color: gray;
-}
-
 .post-form-blog textarea {
     width: 100%;
 }
@@ -38,13 +28,11 @@
     float: right;
 }
 
-.top-menu, .top-menu:hover {
-    color: #ffffff;
-    float: right;
-    font-size: 26px;
-    margin-right: 20px;
-}
-
 .post a i {
     padding: 10px 10px 10px 0px;
 }
+
+.comment {
+    margin: 20px 0px 20px 0px;
+}
+

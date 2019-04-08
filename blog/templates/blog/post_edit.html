@@ -1,9 +1,9 @@
 {% extends 'blog/base.html' %}
 
-{% block title %}Edit&nbsp;{{ post.title }}{% endblock %}
+{% block title %}Edit - {{ post.title }}{% endblock %}
 
 {% block content %}
-    <h1>New post</h1>
+    <div class="edit-header"><h1>New post</h1></div>
     <form method="post" class="post-form-blog">
         {% csrf_token %}
         {{ form.as_p }}

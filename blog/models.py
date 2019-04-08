@@ -4,6 +4,7 @@ from django.utils import timezone
 # Create your models here.
 
 class Post(models.Model):
+           # creates a foreignkey('authenticates an author', deletes all the user's post when user is deleted)
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
@@ -18,3 +19,15 @@ class Post(models.Model):
     def __str__(self):
         return self.title
       # return str(self.title) + ' by ' + str(self.author)
+
+     # Comment(inherit from Model)
+class Comment(models.Model):
+# Relate comment to a post = creates a foreignkey('identifies blogpost', deletes all comments when post is deleted, returns all comments of a specific blogpost *line 26)
+    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
+    # Post.objects.get(pk=2).comments.all()
+    author = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.text
