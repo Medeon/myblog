@@ -3,7 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from .forms import PostForm, CommentForm
-from .models import Post
+from .models import Post, Comment
+
 
 # Create your views here.
 def post_list(request):
@@ -82,4 +83,10 @@ def add_comment_to_post(request, pk):
         form = CommentForm()
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
-# TIMESTAMP: 35:40
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    # go back to the post detail view of the post with the pk from the deleted comment
+    return redirect('post_detail', pk=comment.post.pk)
+
+# TIMESTAMP: 5:00

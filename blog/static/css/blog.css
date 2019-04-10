@@ -8,6 +8,10 @@
     margin-top: 20px;
 }
 
+.comment-header {
+    margin-top: 20px;
+}
+
 .content {
     margin-left: 40px;
 }
@@ -17,6 +21,7 @@
 }
 
 .post {
+    margin-top: 20px;
     margin-bottom: 70px;
 }
 
