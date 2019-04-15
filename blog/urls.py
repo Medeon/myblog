@@ -33,4 +33,8 @@ urlpatterns = [
     # 127.0.0.1:8000/comment/4/remove --> local
     # mydjangosite.com/comment/4/remove --> online
     path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
+
+    # 127.0.0.1:8000/comment/4/approve --> local
+    # mydjangosite.com/comment/4/approve --> online
+    path('comment/<int:pk>/approve', views.comment_approve, name='comment_approve'),
 ]

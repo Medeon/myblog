@@ -3,7 +3,7 @@
 {% block title %}Add a Comment{% endblock %}
 
 {% block content %}
-    <div class="comment-header"><h2>New comment</h2></div>
+    <div><h2>New comment</h2></div>
     <form class="post-form-blog" method="POST">
         {% csrf_token %}
         {{ form.as_p }}

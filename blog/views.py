@@ -88,5 +88,7 @@ def comment_remove(request, pk):
     comment.delete()
     # go back to the post detail view of the post with the pk from the deleted comment
     return redirect('post_detail', pk=comment.post.pk)
-
-# TIMESTAMP: 5:00
+def comment_approve(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('post_detail', pk=comment.post.pk)
