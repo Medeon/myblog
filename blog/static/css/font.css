@@ -26,6 +26,7 @@
 }
 
 .logo {
+    margin-left: 40px;
     font-family: 'Exo 2', Verdana, sans-serif;
     font-size: 48px;
     text-shadow: 2px 2px 7px #111111;
