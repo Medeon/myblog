@@ -17,16 +17,20 @@
     margin-bottom: 70px;
 }
 
+.post a i {
+    padding: 10px 10px 10px 0px;
+}
+
+#publish {
+    margin-bottom: 20px;
+}
+
 .post-form-blog textarea {
     width: 100%;
 }
 
 .post-form-blog .btn-primary {
     float: right;
-}
-
-.post a i {
-    padding: 10px 10px 10px 0px;
 }
 
 .comment {

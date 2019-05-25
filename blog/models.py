@@ -25,7 +25,7 @@ class Post(models.Model):
 
      # Comment(inherit from Model)
 class Comment(models.Model):
-# Relate comment to a post = creates a foreignkey('identifies blogpost', deletes all comments when post is deleted, returns all comments of a specific blogpost *line 26)
+# Relate comment to a post = creates a foreignkey('identifies blogpost', deletes all comments when post is deleted, returns all comments of a specific blogpost *line 30)
     post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
     # Post.objects.get(pk=2).comments.all()
     author = models.CharField(max_length=200)
