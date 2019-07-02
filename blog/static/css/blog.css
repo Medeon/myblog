@@ -13,7 +13,7 @@
 }
 
 .admin {
-    padding: 10px 5px 10px 5px;
+    padding: 0px 5px 10px 5px;
 }
 
 .admin a, i {
@@ -22,6 +22,7 @@
 }
 
 .post {
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
@@ -37,3 +38,12 @@
     margin: 20px 0px 20px 0px;
 }
 
+.login {
+    margin-top: 20px;
+}
+
+.panel {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+}

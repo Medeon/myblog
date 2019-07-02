@@ -1,8 +1,10 @@
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, UserForm
 from .models import Post, Comment
 
 
@@ -14,10 +16,12 @@ def post_list(request):
     context_dictionary = {'posts': posts}
     return render(request, 'blog/post_list.html', context_dictionary)
 
+
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     context_dictionary = {'post': post}
     return render(request, 'blog/post_detail.html', context_dictionary)
+
 
 @login_required(login_url='/accounts/login')
 def post_new(request):
@@ -38,6 +42,7 @@ def post_new(request):
         context_dictionary = {'form': form}
     return render(request, 'blog/post_edit.html', context_dictionary)
 
+
 @login_required(login_url='/accounts/login')
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -55,6 +60,7 @@ def post_edit(request, pk):
         context_dictionary = {'form': form, 'post': post}
     return render(request, 'blog/post_edit.html', context_dictionary)
 
+
 @login_required(login_url='/accounts/login')
 def post_draft_list(request):
     # show all of the drafts in decending order:
@@ -62,17 +68,20 @@ def post_draft_list(request):
     context_dictionary = {'posts': posts}
     return render(request, 'blog/post_draft_list.html', context_dictionary)
 
+
 @login_required(login_url='/accounts/login')
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('post_detail', pk=pk)
 
+
 @login_required(login_url='/accounts/login')
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('/', pk=post.pk)
+
 
 @login_required(login_url='/accounts/login')
 def add_comment_to_post(request, pk):
@@ -89,12 +98,14 @@ def add_comment_to_post(request, pk):
         form = CommentForm()
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
+
 @login_required(login_url='/accounts/login')
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     # go back to the post detail view of the post with the pk from the deleted comment
     return redirect('post_detail', pk=comment.post.pk)
+
 
 @login_required(login_url='/accounts/login')
 def comment_approve(request, pk):
@@ -103,3 +114,13 @@ def comment_approve(request, pk):
     return redirect('post_detail', pk=comment.post.pk)
 
 
+def signup(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(**form.cleaned_data)
+            login(request, new_user)
+            return redirect('/')
+    else:
+        form = UserForm()
+    return render(request, 'blog/signup.html', {'form': form})
